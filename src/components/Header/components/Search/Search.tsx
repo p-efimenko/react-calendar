@@ -20,12 +20,12 @@ export const Search: React.FC<Props> = (props) => {
   const state = useAppSelector((state) => state.events.events);
 
   const onChange = (
-    _: any,
-    value: CalendarEvent,
+    value: CalendarEvent | null,
     reason: AutocompleteChangeReason
   ) => {
     //
     if (reason === "selectOption") {
+      // @ts-ignore
       dispatch(setSelectedDate(value.date));
     }
   };
@@ -45,7 +45,7 @@ export const Search: React.FC<Props> = (props) => {
             <Box>{format(fromUnixTime(option.date), "d MMMM")}</Box>
           </Stack>
         )}
-        onChange={onChange}
+        onChange={(_, value, reason) => onChange(value, reason)}
       />
     </>
   );
