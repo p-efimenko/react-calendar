@@ -7,12 +7,6 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: false,
-
-  // env: {
-  //   CLIENT_ID: `${process.env.CLIENT_ID}`,
-  //   CLIENT_SECRET_KEY: `${process.env.CLIENT_SECRET_KEY}`,
-  // },
-
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
    * must comment the below `i18n` config out.
