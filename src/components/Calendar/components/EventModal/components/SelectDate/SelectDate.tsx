@@ -4,6 +4,7 @@ import { useAppSelector } from "@/store";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { fromUnixTime } from "date-fns";
+import { DateObject } from "@/types";
 
 export const SelectDate: React.FC = () => {
   //
@@ -14,7 +15,10 @@ export const SelectDate: React.FC = () => {
     control: control,
   });
 
-  const selectedCell = useAppSelector((state) => state.calendar.selectedCell);
+  // TODO: fix type issue
+  const selectedCell: any = useAppSelector(
+    (state) => state.calendar.selectedCell
+  );
   const selectedEvent = useAppSelector((state) => state.calendar.selectedEvent);
 
   const initialDate = useMemo(
