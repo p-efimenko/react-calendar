@@ -21,7 +21,7 @@ import {
 
 import { Close, DeleteOutline, EditOutlined } from "@mui/icons-material";
 
-import { GuestsList } from "@/components/Calendar/components/EventModal/components";
+import { GuestsList } from "@/components/module/Calendar/components/EventModal/components";
 
 import { format, fromUnixTime } from "date-fns";
 import type { CalendarEvent } from "@/types";

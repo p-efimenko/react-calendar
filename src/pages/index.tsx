@@ -1,14 +1,14 @@
 import Head from "next/head";
 import { useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
 
-import { Button } from "@mui/material";
-import { Header, Calendar } from "@/components";
-
-import axios from "axios";
+import { Header } from "@/components/common";
+import { Calendar } from "@/components/module";
 
 import { store } from "@/store/store";
 import { saveState } from "@/utils";
+
+// import { useGoogleLogin } from "@react-oauth/google";
+// import axios from "axios";
 
 // here we subscribe to the store changes
 
@@ -27,24 +27,24 @@ const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // TODO
-  const handleLogin = useGoogleLogin({
-    onSuccess: async (response) => {
-      const { data } = await axios.post("http://localhost:5000/auth/google", {
-        code: response.code,
-      });
+  // const handleLogin = useGoogleLogin({
+  //   onSuccess: async (response) => {
+  //     const { data } = await axios.post("http://localhost:5000/auth/google", {
+  //       code: response.code,
+  //     });
 
-      setIsAuth(true);
-    },
-    flow: "auth-code",
-    select_account: true,
-    scope: [
-      "openid",
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/calendar.readonly",
-      "https://www.googleapis.com/auth/calendar.events",
-    ].join(" "),
-  });
+  //     setIsAuth(true);
+  //   },
+  //   flow: "auth-code",
+  //   select_account: true,
+  //   scope: [
+  //     "openid",
+  //     "https://www.googleapis.com/auth/userinfo.profile",
+  //     "https://www.googleapis.com/auth/userinfo.email",
+  //     "https://www.googleapis.com/auth/calendar.readonly",
+  //     "https://www.googleapis.com/auth/calendar.events",
+  //   ].join(" "),
+  // });
 
   return (
     <>
@@ -52,13 +52,11 @@ const Home: NextPage = () => {
         <title>React - Calendar</title>
       </Head>
       <main>
-        {isAuth ? (
+        {isAuth && (
           <>
             <Header />
             <Calendar />
           </>
-        ) : (
-          <Button onClick={() => handleLogin()}>Login</Button>
         )}
       </main>
     </>
