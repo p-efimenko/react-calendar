@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useAppSelector } from "@/store";
 
 import { Box } from "@mui/material";
 
 import { EventList } from "./components";
 
-import { isToday, getUnixTime } from "date-fns";
+import { isToday as chechIsToday, getUnixTime } from "date-fns";
 
 import type { CalendarCell as ICalendarCell, CalendarEvent } from "@/types";
 
@@ -38,6 +38,8 @@ export const CalendarCell: React.FC<CalendarCellProps> = (props) => {
     }
   }, [value, state]);
 
+  const isToday = useMemo(() => chechIsToday(value.date), [value]);
+
   return (
     <>
       <Box color={value.inMonth ? "black" : "#c9c9c9"} p={1}>
@@ -48,7 +50,7 @@ export const CalendarCell: React.FC<CalendarCellProps> = (props) => {
           fontWeight={500}
           lineHeight={"30px"}
           display="inline-block"
-          sx={isToday(value.date) ? isTodayStyles : undefined}
+          sx={isToday ? isTodayStyles : undefined}
         >
           {value.day}
         </Box>
